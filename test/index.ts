@@ -1,5 +1,5 @@
-import { generate as generateTxFactory, Long, Seed, StringWithLength, utils } from '@waves/signature-generator';
-import { Asset, BigNumber, Money } from '@waves/data-entities';
+import { generate as generateTxFactory, Long, Seed, StringWithLength, utils } from '@turtlenetwork/signature-generator';
+import { Asset, BigNumber, Money } from '@turtlenetwork/data-entities';
 import { SeedAdapter, SIGN_TYPE } from '../src/index';
 
 const testSeed = 'some test seed words without money on mainnet';

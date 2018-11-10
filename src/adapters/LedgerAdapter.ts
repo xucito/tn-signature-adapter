@@ -1,6 +1,6 @@
 import { Adapter } from './Adapter';
 import { AdapterType } from '../config';
-import { WavesLedger } from '@waves/ledger';
+import { WavesLedger } from '@turtlenetwork/ledger';
 
 
 export class LedgerAdapter extends Adapter {

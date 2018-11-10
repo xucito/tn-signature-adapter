@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- 9.4.0
+script: skip
+install: skip
+before_deploy:
+- npm install -g npm@latest
+- npm install -g typescript
+- npm install
+- npm install gulp
+- npm install clone
+- npm install gulp-clone
+- yarn install
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: info@blackturtle.eu
+  api_key:
+    secure: Spqpcj52WHPSfR9dFVwfUtykO3+8hJSXpA/z/o64siWjPuX+rY4Vb0+HdfZ+zPIjxjClR2urDCZkWxgvPk8EjkqxmHA3o1NL5RGnda32hIi6aKeYZK5iH/1sP4OrGlr7gcLNVffOntf3CtV4xSKgx05O4Hb3fYwCvDuZYg3FgnmeuN78Hn+aMJ3KivtttkkmrSdvkUrbvspRYY4G1yHO5chTCN6CFS2DfhLTZGT1+/ZyCcbbKfOHIOzz6Hky4cyJHf5G6C2p43S81h/ow7nnzx61wpHTVrJAzC6XoJCEE9LccK3UJdEH7T6ThOH085OHJvCYQ56FBJsckMNOcBVwGo8OOnSrwOTq+UXQuhH3NaQDaWQeY2IXi96QV39/macwNB0naw1KOJo9cYl3pJovy2Z+tFuVyh5UaJyh5HEkE/kp70uIkHa3BwYpG9Z0BtFz26wbLzZGt6gmkGCMOifykvbFixiQxQ3F3qXjEBgmO7ZHieTG2O/Kocy+NVVFVk52BFcDi44WE3/NHGrzjxZyrFAYe3JilGTu4HJE/sAvjoOuQ/vYGop5ZgOID4r+OfPa55Nf7Pd2cABtYsmgWLK1nuI4FDG9hpMUMW/44QRpwcNNMebH0WWXL4m2hp05C49J0FAoag4aY9ggjdJobzWqDZO7mjB0G199DZyMIITUP8I=
+  on:
+    repo: BlackTurtle123/tn-signature-adapter

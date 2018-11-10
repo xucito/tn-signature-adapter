@@ -1,6 +1,6 @@
 import { SIGN_TYPE } from './constants';
-import { IDATA_ENTRY, ISignatureGeneratorConstructor } from '@waves/signature-generator/src/signatureFactory/interface';
-import { Money, BigNumber } from '@waves/data-entities';
+import { IDATA_ENTRY, ISignatureGeneratorConstructor } from '@turtlenetwork/signature-generator/src/signatureFactory/interface';
+import { Money, BigNumber } from '@turtlenetwork/data-entities';
 
 export type TSignData =
     ISignAuthData |

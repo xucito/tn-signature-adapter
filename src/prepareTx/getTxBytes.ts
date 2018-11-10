@@ -1,5 +1,5 @@
 import { TSignData, getSchemaByType, SIGN_TYPES } from './';
-import { ISignatureGeneratorConstructor } from '@waves/signature-generator';
+import { ISignatureGeneratorConstructor } from '@turtlenetwork/signature-generator';
 
 
 export default function (forSign: TSignData): Promise<Uint8Array> {
