@@ -1,15 +1,19 @@
-import { generate as generateTxFactory, Long, Seed, StringWithLength, utils } from '@turtlenetwork/signature-generator';
+import { Seed, utils } from '@turtlenetwork/signature-generator';
 import { Asset, BigNumber, Money } from '@turtlenetwork/data-entities';
 import { SeedAdapter, SIGN_TYPE } from '../src/index';
+import './WavesKeeperAdapter';
+import './validators';
+
 
 const testSeed = 'some test seed words without money on mainnet';
 const seed = new Seed(testSeed);
 
+//@ts-ignore
 const checkCryptoGen = publicKey => (bytes, signature) => {
     return utils.crypto.isValidSignature(bytes, signature, publicKey);
 };
 
-const checkRypto = checkCryptoGen(seed.keyPair.publicKey);
+const checkCrypto = checkCryptoGen(seed.keyPair.publicKey);
 
 const testAsset = new Asset({
     precision: 5,
@@ -21,64 +25,71 @@ const testAsset = new Asset({
     reissuable: false,
     sender: seed.address,
     timestamp: new Date(),
-    ticker: null
+    ticker: undefined
 });
 
-describe('Check signature', () => {
-
-    let adapter: SeedAdapter;
-
-    beforeEach(() => {
-        adapter = new SeedAdapter(testSeed);
-    });
-
-    it('check transfer signature', done => {
-
-        const data = {
-            amount: Money.fromTokens(1, testAsset),
-            fee: Money.fromTokens(0.0001, testAsset),
-            recipient: 'send2',
-            timestamp: Date.now()
-        };
-
-        const signable = adapter.makeSignable({
-            type: SIGN_TYPE.TRANSFER,
-            data
+describe('Create data and signature check', () => {
+    
+    describe('invoke_script', () => {
+        let adapter: SeedAdapter;
+    
+        beforeEach(() => {
+            adapter = new SeedAdapter(testSeed);
         });
-
-        Promise.all([signable.getBytes(), signable.getSignature()])
-            .then(([bytes, signature]) => {
-                expect(checkRypto(bytes, signature)).toBe(true);
-                done();
+        it ('check', done => {
+            const data = {
+                payment: [Money.fromTokens(1, testAsset)] as [Money],
+                fee: Money.fromTokens(0.0005, testAsset),
+                dappAddress: '3PQwUzCLuAG24xV7Bd6AMWCz4GEXyDix8Dz',
+                timestamp: Date.now(),
+                call: {
+                    function: 'trololo',
+                    args: [ { value: 123, type: 'string' } ]
+                }
+            };
+    
+            const signable = adapter.makeSignable({
+                type: SIGN_TYPE.SCRIPT_INVOCATION,
+                data
             });
+    
+            Promise.all([signable.getBytes(), signable.getSignature()])
+                .then(([bytes, signature]) => {
+                    expect(checkCrypto(bytes, signature)).toBe(true);
+                    done();
+                });
+            
+        })
     });
-
-    it('check custom signature', done => {
-
-        const data = {
-            prefix: 'some',
-            timestamp: Date.now()
-        };
-
-        const generator = generateTxFactory([
-            new StringWithLength('prefix'),
-            new Long('timestamp')
-        ]);
-
-        const instance = new generator(data);
-
-        const signable = adapter.makeSignable({
-            type: SIGN_TYPE.CUSTOM,
-            data,
-            generator
+    
+    describe('Check signature', () => {
+        
+        let adapter: SeedAdapter;
+        
+        beforeEach(() => {
+            adapter = new SeedAdapter(testSeed);
         });
-
-        Promise.all([instance.getBytes(), signable.getSignature()])
-            .then(([bytes, signature]) => {
-                expect(checkRypto(bytes, signature)).toBe(true);
-                done();
+        
+        it('check transfer signature', done => {
+            
+            const data = {
+                amount: Money.fromTokens(1, testAsset),
+                fee: Money.fromTokens(0.0001, testAsset),
+                recipient: 'send2',
+                timestamp: Date.now()
+            };
+            
+            const signable = adapter.makeSignable({
+                type: SIGN_TYPE.TRANSFER,
+                data
             });
 
+            Promise.all([signable.getBytes(), signable.getSignature()])
+                .then(([bytes, signature]) => {
+                    expect(checkCrypto(bytes, signature)).toBe(true);
+                    done();
+                });
+        });
+        
     });
-
 });

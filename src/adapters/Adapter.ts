@@ -1,7 +1,13 @@
 import { AdapterType } from '../config';
+<<<<<<< HEAD
 import { config } from '@turtlenetwork/signature-generator';
 import { TSignData } from '../prepareTx';
 import { Signable } from "../Signable";
+=======
+import { config } from '@waves/signature-generator';
+import { SIGN_TYPE, TSignData } from '../prepareTx';
+import { Signable } from '../Signable';
+>>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 
 export abstract class Adapter {
@@ -21,17 +27,23 @@ export abstract class Adapter {
         return Promise.resolve();
     }
 
+    public onDestroy(cb?: Function): void {
+        return;
+    }
+
+    public abstract getSignVersions(): Record<SIGN_TYPE, Array<number>>;
+
     public abstract getPublicKey(): Promise<string>;
 
     public abstract getAddress(): Promise<string>;
 
     public abstract getPrivateKey(): Promise<string>;
 
-    public abstract signRequest(bytes: Uint8Array): Promise<string>;
+    public abstract signRequest(databytes: Uint8Array, signData?: any): Promise<string>;
 
-    public abstract signTransaction(bytes: Uint8Array, amountPrecision: number): Promise<string>;
+    public abstract signTransaction(bytes: Uint8Array, amountPrecision: number, signData?: any): Promise<string>;
 
-    public abstract signOrder(bytes: Uint8Array, amountPrecision: number): Promise<string>;
+    public abstract signOrder(bytes: Uint8Array, amountPrecision: number, signData: any): Promise<string>;
 
     public abstract signData(bytes: Uint8Array): Promise<string>;
 
@@ -42,7 +54,7 @@ export abstract class Adapter {
         config.set({ networkByte: options.networkCode });
     }
 
-    public static type: AdapterType = null;
+    public static type: AdapterType = AdapterType.Seed;
 
     public static getUserList(): Promise<Array<string>> {
         return Promise.resolve([]);
@@ -67,7 +79,6 @@ export interface IUser {
     encryptedSeed: string;
     password: string;
     encryptionRounds: number;
-    networkCode: string;
 }
 
 export interface IProofData {
