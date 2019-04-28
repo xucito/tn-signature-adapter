@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@types/ramda": "^0.25.46",
-    "@@turtlenetwork/data-entities": "^9.0.0",
+    "@turtlenetwork/data-entities": "^9.0.0",
     "@turtlenetwork/ledger": "^3.1.5",
     "@waves/marshall": "^0.6.1",
     "@turtlenetwork/signature-generator": "^5.0.1",
