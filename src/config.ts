@@ -4,7 +4,7 @@ import { WavesKeeperAdapter } from './adapters';
 
 export const enum AdapterType {
     Seed = 'seed',
-    WavesKeeper = 'wavesKeeper',
+    WavesKeeper = 'TurtleShell',
     Ledger = 'ledger',
     Tresor = 'tresor'
 }

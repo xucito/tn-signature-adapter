@@ -1,11 +1,6 @@
 import { SIGN_TYPE } from './constants';
-<<<<<<< HEAD
-import { IDATA_ENTRY, ISignatureGeneratorConstructor } from '@turtlenetwork/signature-generator/src/signatureFactory/interface';
+import { IDATA_ENTRY } from '@turtlenetwork/signature-generator/src/signatureFactory/interface';
 import { Money, BigNumber } from '@turtlenetwork/data-entities';
-=======
-import { IDATA_ENTRY } from '@waves/signature-generator/src/signatureFactory/interface';
-import { Money, BigNumber } from '@waves/data-entities';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 export interface IARGS_ENTRY {
     type: string;

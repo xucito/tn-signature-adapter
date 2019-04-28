@@ -1,11 +1,6 @@
 import { prepare } from './prepare';
 import { SIGN_TYPE } from './constants';
-<<<<<<< HEAD
 import { config, TRANSACTION_TYPE_VERSION } from '@turtlenetwork/signature-generator';
-
-const { wrap, schema, processors } = prepare;
-=======
-import { config, TRANSACTION_TYPE_VERSION } from '@waves/signature-generator';
 import * as fieldsType from './fieldTypes';
 
 const { schema, wrap, signSchema, processors } = prepare;
@@ -222,7 +217,6 @@ const SIGN_SCHEMA = {
         fieldsType.number('chainId', null, processors.addValue(() => config.getNetworkByte()), true),
     ]
 };
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 module schemas {
 

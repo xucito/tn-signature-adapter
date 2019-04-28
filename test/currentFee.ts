@@ -1,5 +1,5 @@
-import { BigNumber, Asset, Money } from '@waves/data-entities';
-import { Seed } from '@waves/signature-generator';
+import { BigNumber, Asset, Money } from '@turtlenetwork/data-entities';
+import { Seed } from '@turtlenetwork/signature-generator';
 import { Signable, currentFeeFactory, currentCreateOrderFactory, SeedAdapter, TSignData, SIGN_TYPE } from '../src';
 import { IExchangeTransactionOrder } from '@waves/ts-types';
 
@@ -45,15 +45,15 @@ const CONFIG = {
 
 const WAVES_ASSET = new Asset({
     precision: 8,
-    id: 'WAVES',
+    id: 'TN',
     quantity: new BigNumber('1000000000000000'),
-    description: 'Waves token',
+    description: 'Turtle Network',
     height: 0,
-    name: 'Waves',
+    name: 'TN',
     reissuable: false,
     sender: seed.address,
     timestamp: new Date(),
-    ticker: 'WAVES'
+    ticker: 'TN'
 });
 
 const TEST_ASSET = new Asset({

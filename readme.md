@@ -3,17 +3,17 @@
 ## Installation
 
 ```bash
-$ npm install --save @waves/signature-adapter
+$ npm install --save @turtlenetwork/signature-adapter
 ```
 
 ## Usage
 ```typescript
-import { SeedAdapter, SIGN_TYPE } from '@waves/signature-adapter';
-import { Money, Asset } from '@waves/data-entities';
+import { SeedAdapter, SIGN_TYPE } from '@turtlenetwork/signature-adapter';
+import { Money, Asset } from '@turtlenetwork/data-entities';
 
 const asset = new Asset({
-   ticker: 'WAVES',
-   id: 'WAVES',
+   ticker: 'TN',
+   id: 'TN',
    name: 'Waves',
    precision: 8,
    description: '',
@@ -55,20 +55,20 @@ encryptedSeed {string} - seed phrase encoded with passwords
 password {string} - password that is encrypted seed phrase
 encryptionRounds {number} - encryption complexity
 
-For change network byte use @waves/signature-generator config:
+For change network byte use @turtlenetwork/signature-generator config:
 
 ```typescript
-import { config } from '@waves/signature-generator';
+import { config } from '@turtlenetwork/signature-generator';
 
 config.set('networkByte', 'T'.charCodeAt(0))
 ```
 
-*If you use seed phrase to create SeedAdapter note that the minimum length of a phrase is 15 characters. See the documentation @waves/signature-generator for more details*
+*If you use seed phrase to create SeedAdapter note that the minimum length of a phrase is 15 characters. See the documentation @turtlenetwork/signature-generator for more details*
 
 Example of creation SeedAdapter with seed phrase:
 
 ```typescript
-import { SeedAdapter } from '@waves/signature-adapter';
+import { SeedAdapter } from '@turtlenetwork/signature-adapter';
 
 const adapter = new SeedAdapter('some seed phrase more 15 chars');
 ```
@@ -88,7 +88,7 @@ Where ‘from’ is wallet ID in the Ledger from which to start receiving data, 
 
 Example:
 ```typescript
-import { LedgerAdapter } from '@waves/signature-adapter';
+import { LedgerAdapter } from '@turtlenetwork/signature-adapter';
 
 LedgerAdapter.getUserList().then(([userData]) => new LedgerAdapter(userData));
 ```
@@ -134,7 +134,7 @@ Accepts data for signature (Visit [interfaces](https://github.com/wavesplatform/
 Returns a copy of the object data transferred for signature
 
 - getSignData(): Promise\<object\>;
-Returns data for signing as received for making signature [@waves/signature-generator](https://github.com/wavesplatform/waves-signature-generator)
+Returns data for signing as received for making signature [@turtlenetwork/signature-generator](https://github.com/wavesplatform/waves-signature-generator)
 
 - addProof(proof: string): Signable;
 Accepts the signature for adding it to the signature list. Signature list is used for "getDataForApi" method

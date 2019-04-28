@@ -2,19 +2,12 @@ import {
     MATCHER_BYTES_GENERATOR_MAP,
     BYTES_GENERATORS_MAP,
     StringWithLength,
-<<<<<<< HEAD
-    Long,
-    generate
-} from '@turtlenetwork/signature-generator';
-import { IAuthData } from './interfaces';
-=======
     generate,
     ISignatureGeneratorConstructor,
     Int
-} from '@waves/signature-generator';
+} from '@turtlenetwork/signature-generator';
 import { IAdapterSignMethods, IAuthData } from './interfaces';
 import { binary } from '@waves/marshall';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 export enum TRANSACTION_TYPE_NUMBER {
     SEND_OLD = 2,

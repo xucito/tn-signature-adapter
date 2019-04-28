@@ -1,11 +1,7 @@
 import { Adapter, IUser } from './Adapter';
 import { AdapterType } from '../config';
-<<<<<<< HEAD
 import { Seed, utils } from '@turtlenetwork/signature-generator';
-=======
-import { Seed, utils } from '@waves/signature-generator';
 import { SIGN_TYPE } from '../prepareTx';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 
 export class SeedAdapter extends Adapter {

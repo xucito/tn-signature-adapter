@@ -1,6 +1,6 @@
-import { BigNumber } from '@waves/data-entities';
+import { BigNumber } from '@turtlenetwork/data-entities';
 import { path } from 'ramda';
-import { parseTransactionBytes } from '@waves/signature-generator';
+import { parseTransactionBytes } from '@turtlenetwork/signature-generator';
 import {
     IExchangeTransactionOrder,
     TTransaction,

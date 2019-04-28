@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { Money, BigNumber } from '@turtlenetwork/data-entities';
+import { Money, BigNumber, AssetPair, OrderPrice } from '@turtlenetwork/data-entities';
 import { WAVES_ID, libs, config } from '@turtlenetwork/signature-generator';
-=======
-import { Money, BigNumber, AssetPair, OrderPrice } from '@waves/data-entities';
-import { WAVES_ID, libs, config } from '@waves/signature-generator';
 import { VALIDATORS } from './fieldValidator';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 //@ts-ignore
 const normalizeAssetId = id => id === WAVES_ID ? '' : id;

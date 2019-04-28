@@ -1,13 +1,7 @@
 import { AdapterType } from '../config';
-<<<<<<< HEAD
 import { config } from '@turtlenetwork/signature-generator';
-import { TSignData } from '../prepareTx';
-import { Signable } from "../Signable";
-=======
-import { config } from '@waves/signature-generator';
 import { SIGN_TYPE, TSignData } from '../prepareTx';
 import { Signable } from '../Signable';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 
 export abstract class Adapter {

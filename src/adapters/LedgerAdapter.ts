@@ -1,11 +1,7 @@
 import { Adapter } from './Adapter';
 import { AdapterType } from '../config';
-<<<<<<< HEAD
 import { WavesLedger } from '@turtlenetwork/ledger';
-=======
-import { WavesLedger } from '@waves/ledger';
 import { SIGN_TYPE } from '../prepareTx';
->>>>>>> 434d07923579ead0921b2cec54cf844ad36a7c8a
 
 
 export class LedgerAdapter extends Adapter {

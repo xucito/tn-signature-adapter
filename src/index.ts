@@ -1,5 +1,5 @@
 import { find } from './utils';
-export { parseTransactionBytes } from '@waves/signature-generator';
+export { parseTransactionBytes } from '@turtlenetwork/signature-generator';
 
 export * from './adapters';
 export * from './prepareTx';

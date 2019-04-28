@@ -1,7 +1,7 @@
 import { Adapter } from './Adapter';
 import { AdapterType } from '../config';
 import { SIGN_TYPE, TSignData } from '../prepareTx';
-import { utils } from '@waves/signature-generator';
+import { utils } from '@turtlenetwork/signature-generator';
 
 const DEFAULT_TX_VERSIONS = {
     [SIGN_TYPE.AUTH]: [1],
@@ -159,7 +159,7 @@ export class WavesKeeperAdapter extends Adapter {
         WavesKeeperAdapter._initExtension();
 
         if (!this._api) {
-            throw { code: 0, message: 'Install WavesKeeper' };
+            throw { code: 0, message: 'Install TurtleShell' };
         }
 
         let error, data;
@@ -171,7 +171,7 @@ export class WavesKeeperAdapter extends Adapter {
 
         if (!error && data) {
             if (!data.locked && !data.account) {
-                error = { code: 2, message: 'No accounts in waveskeeper' };
+                error = { code: 2, message: 'No accounts in TurtleShell' };
             } else if (!data.locked && (!data.account.address || !utils.crypto.isValidAddress(data.account.address))) {
                 error = { code: 3, message: 'Selected network incorrect' };
             }
