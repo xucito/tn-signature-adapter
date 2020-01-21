@@ -23,6 +23,8 @@ export class LedgerAdapter extends Adapter {
         if (!this._currentUser) {
             throw 'No selected user';
         }
+
+        this._isDestroyed = false;
     }
 
     public isAvailable() {
@@ -44,7 +46,7 @@ export class LedgerAdapter extends Adapter {
     public getAdapterVersion() {
         return LedgerAdapter._ledger.getVersion();
     }
-    
+
     public signRequest(bytes: Uint8Array): Promise<string> {
         return  this._isMyLedger()
             .then(() => LedgerAdapter._ledger.signRequest(this._currentUser.id, bytes));
@@ -67,7 +69,11 @@ export class LedgerAdapter extends Adapter {
         return this._isMyLedger()
             .then(() => LedgerAdapter._ledger.signSomeData(this._currentUser.id, bytes));
     }
-
+    
+    public getEncodedSeed() {
+        return Promise.reject(Error('Method "getEncodedSeed" is not available!'));
+    }
+    
     public getPrivateKey() {
         return Promise.reject('No private key');
     }
@@ -76,14 +82,15 @@ export class LedgerAdapter extends Adapter {
         return {
             [SIGN_TYPE.AUTH]: [1],
             [SIGN_TYPE.MATCHER_ORDERS]: [1],
-            [SIGN_TYPE.CREATE_ORDER]: [1, 2],
+            [SIGN_TYPE.WAVES_CONFIRMATION]: [1],
+            [SIGN_TYPE.CREATE_ORDER]: [1, 2, 3],
             [SIGN_TYPE.CANCEL_ORDER]: [1],
             [SIGN_TYPE.COINOMAT_CONFIRMATION]: [1],
             [SIGN_TYPE.ISSUE]: [2],
             [SIGN_TYPE.TRANSFER]: [2],
             [SIGN_TYPE.REISSUE]: [2],
             [SIGN_TYPE.BURN]: [2],
-            [SIGN_TYPE.EXCHANGE]: [],
+            [SIGN_TYPE.EXCHANGE]: [0,1,2],
             [SIGN_TYPE.LEASE]: [2],
             [SIGN_TYPE.CANCEL_LEASING]: [2],
             [SIGN_TYPE.CREATE_ALIAS]: [2],
@@ -97,13 +104,20 @@ export class LedgerAdapter extends Adapter {
     }
 
     protected _isMyLedger() {
-        return LedgerAdapter._ledger.getUserDataById(this._currentUser.id)
+        const promise = LedgerAdapter._ledger.getUserDataById(this._currentUser.id)
             //@ts-ignore
             .then(user => {
                 if (user.address !== this._currentUser.address) {
+                    this._isDestroyed = true;
                     throw {error: 'Invalid ledger'};
                 }
             });
+        
+        promise.catch((e: any) => {
+            console.warn(e);
+        });
+        
+        return promise;
     }
 
     public static getUserList(from: Number = 1, to: Number = 1) {

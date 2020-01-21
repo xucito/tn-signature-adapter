@@ -1,5 +1,8 @@
-import { Money, BigNumber } from '@turtlenetwork/data-entities';
-import { utils, libs } from '@turtlenetwork/signature-generator';
+import { libs } from '@waves/waves-transactions';
+import { Money } from '@waves/data-entities';
+import { BigNumber } from '@waves/bignumber';
+
+const { stringToBytes, base58Decode, keccak, blake2b } = libs.crypto;
 
 const TRANSFERS = {
     ATTACHMENT: 140
@@ -36,16 +39,44 @@ export const ERROR_MSG = {
     NOT_HTTPS_URL: 'field can be url with https protocol',
     BASE64: 'field can be base64 string with prefix "base64:"',
     EMPTY_BASE64: 'field can be not empty base64"',
+    BASE58: 'field can be base58 string',
+    PUB_KEY: 'field can be base58 publicKey',
+};
+
+export const isValidAddress = function (address: string, networkByte: number) {
+    if (!address || typeof address !== 'string') {
+        throw new Error('Missing or invalid address');
+    }
+    
+    let addressBytes = base58Decode(address);
+    
+    if (addressBytes[0] !== 1 || addressBytes[1] !== networkByte) {
+        return false;
+    }
+    
+    let key = addressBytes.slice(0, 22);
+    let check = addressBytes.slice(22, 26);
+    let keyHash = keccak(blake2b(key)).slice(0, 4);
+    
+    for (var i = 0; i < 4; i++) {
+        if (check[i] !== keyHash[i]) {
+            return false;
+        }
+    }
+    return true;
 };
 
 const isBase64 = (value: string): boolean => {
+    if (value === '') {
+        return true;
+    }
     const regExp = /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/;
     return regExp.test(value);
 };
 
 //@ts-ignore
 const getBytesFromString = value => {
-    return utils.convert.stringToByteArray(value);
+    return stringToBytes(value);
 };
 
 //@ts-ignore
@@ -222,9 +253,9 @@ const address = (options: IFieldOptions) => {
     options = { ...options, value: numberToString(options.value) };
     required(options);
     const { value } = options;
-    const isValidAddress = (address: string) => {
+    const validateAddress = (address: string) => {
         try {
-            return utils.crypto.isValidAddress(address);
+            return isValidAddress(address, options.optionalData as number);
         } catch (e) {
             return false;
         }
@@ -240,7 +271,7 @@ const address = (options: IFieldOptions) => {
             return error(options, ERROR_MSG.SMALL_FIELD);
         case value.length > ADDRESS.MAX_ADDRESS_LENGTH:
             return error(options, ERROR_MSG.LARGE_FIELD);
-        case !isValidAddress(value):
+        case !validateAddress(value):
             return error(options, ERROR_MSG.WRONG_ADDRESS);
     }
 };
@@ -270,7 +301,7 @@ const assetId = (options: IFieldOptions) => {
     let isAssetId = false;
     
     try {
-        isAssetId = libs.base58.decode(value.trim()).length === 32;
+        isAssetId = base58Decode(value.trim()).length === 32;
     } catch (e) {
         isAssetId = false;
     }
@@ -284,7 +315,7 @@ const timestamp = (options: IFieldOptions) => {
     required(options);
     const { value } = options;
     
-    if (value && !(value instanceof Date || typeof value === 'number' || +value)) {
+    if (isNaN(value) || value && !(value instanceof Date || typeof value === 'number' || +value)) {
         if (typeof value !== 'string' || isNaN(Date.parse(value as string))) {
             return error(options, ERROR_MSG.WRONG_TIMESTAMP);
         }
@@ -396,7 +427,7 @@ const transfers = (options: IFieldOptions) => {
     }
     
     //@ts-ignore
-    const errors = (value || []).map(({ recipient, amount }, index) => {
+    const errors = (value || []).map(({ recipient, amount, name }, index) => {
         const dataErrors = [];
         
         try {
@@ -408,7 +439,7 @@ const transfers = (options: IFieldOptions) => {
         try {
             aliasOrAddress({
                 ...options,
-                value: recipient,
+                value: recipient || name,
                 name: `${options.name}:${index}:recipient`,
                 optional: false
             });
@@ -483,6 +514,28 @@ const binary = (options: IFieldOptions) => {
     }
 };
 
+const publicKey = (options: IFieldOptions) => {
+    required(options);
+    
+    const { value = '' } = options;
+    
+    if (!value || typeof value !== 'string') {
+        error(options, ERROR_MSG.PUB_KEY);
+    }
+     let pk;
+    try {
+       pk = base58Decode(value);
+    } catch (e) {
+        error(options, ERROR_MSG.BASE58);
+    }
+    
+    if (pk && pk.length === 32) {
+        return void 0;
+    }
+    
+    error(options, ERROR_MSG.PUB_KEY);
+};
+
 
 const script = (options: IFieldOptions) => {
     binary(options);
@@ -501,6 +554,10 @@ const asset_script = (options: IFieldOptions) => {
 const call = (options: IFieldOptions) => {
     required(options);
     const { value } = options;
+    if (value == null) {
+        return;
+    }
+    
     if (!value || typeof value !== 'object') {
         error(options, ERROR_MSG.WRONG_TYPE);
     }
@@ -514,6 +571,10 @@ const call = (options: IFieldOptions) => {
     };
     
     string(functionValue);
+    
+    if (value.function === '') {
+        error(functionValue, ERROR_MSG.REQUIRED);
+    }
     
     const argsValue = {
         key: 'call.args',
@@ -579,6 +640,7 @@ export const VALIDATORS = {
     precision,
     call,
     payment,
+    publicKey,
 };
 
 
@@ -588,4 +650,5 @@ interface IFieldOptions {
     optional: boolean;
     type: string;
     name: string;
+    optionalData?: number;
 }
