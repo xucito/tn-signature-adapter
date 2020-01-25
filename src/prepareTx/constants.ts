@@ -1,6 +1,6 @@
 import { IAdapterSignMethods } from './interfaces';
-import { libs } from '@waves/waves-transactions';
-import * as wavesTransactions from '@waves/waves-transactions';
+import { libs } from '@turtlenetwork/waves-transactions';
+import * as wavesTransactions from '@turtlenetwork/waves-transactions';
 import { toNode as mlToNode } from '@waves/money-like-to-node';
 import { prepare } from './prepare';
 import processors = prepare.processors;

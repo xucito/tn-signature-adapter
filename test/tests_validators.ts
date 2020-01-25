@@ -3,7 +3,7 @@ import { Asset, Money } from '@waves/data-entities';
 import { SIGN_TYPE } from '../src/prepareTx';
 import { ERROR_MSG } from '../src/prepareTx/fieldValidator';
 import { BigNumber } from '@waves/bignumber';
-import { seedUtils } from '@waves/waves-transactions';
+import { seedUtils } from '@turtlenetwork/waves-transactions';
 
 const Seed = seedUtils.Seed;
 
@@ -389,7 +389,7 @@ describe('Check validators', () => {
                 expect(e[0].message).toEqual(ERROR_MSG.WRONG_TYPE);
             }
             
-            const desc = (new Array(1002).join('T'));
+            const desc = (new Array(1002).join('l'));
             
             const signData2 = {
                 type: SIGN_TYPE.ISSUE,

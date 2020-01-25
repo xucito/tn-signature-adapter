@@ -11,7 +11,7 @@ import { currentFeeFactory, currentCreateOrderFactory, IFeeConfig, isEmpty, last
 import { Adapter } from './adapters';
 import { ERRORS } from './constants';
 import { SignError } from './SignError';
-import { libs } from '@waves/waves-transactions';
+import { libs } from '@turtlenetwork/waves-transactions';
 import { convert } from '@waves/money-like-to-node';
 import { BigNumber } from '@waves/bignumber';
 import { TRANSACTION_TYPE_NUMBER } from './prepareTx';

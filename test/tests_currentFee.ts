@@ -1,13 +1,7 @@
-<<<<<<< HEAD:test/currentFee.ts
-import { BigNumber, Asset, Money } from '@turtlenetwork/data-entities';
-import { Seed } from '@turtlenetwork/signature-generator';
-import { Signable, currentFeeFactory, currentCreateOrderFactory, SeedAdapter, TSignData, SIGN_TYPE } from '../src';
-=======
 import { Asset, Money } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
-import { seedUtils } from '@waves/waves-transactions';
+import { seedUtils } from '@turtlenetwork/waves-transactions';
 import { Signable, currentCreateOrderFactory, SeedAdapter, TSignData, SIGN_TYPE } from '../src';
->>>>>>> 80c4d14415fcccf36cb804180a43759fadf8afbd:test/tests_currentFee.ts
 import { IExchangeTransactionOrder } from '@waves/ts-types';
 
 const Seed = seedUtils.Seed;

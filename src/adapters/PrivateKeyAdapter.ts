@@ -1,6 +1,6 @@
 import { Adapter, IPrivateKeyUser, IUser } from './Adapter';
 import { AdapterType } from '../config';
-import { seedUtils, libs } from '@waves/waves-transactions';
+import { seedUtils, libs } from '@turtlenetwork/waves-transactions';
 import { SIGN_TYPE } from '../prepareTx';
 
 const publicKey = libs.crypto.publicKey;

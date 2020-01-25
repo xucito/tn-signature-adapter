@@ -9,7 +9,7 @@ $ npm install --save @turtlenetwork/signature-adapter
 ## Usage
 ```typescript
 import { SeedAdapter, SIGN_TYPE } from '@turtlenetwork/signature-adapter';
-import { Money, Asset } from '@turtlenetwork/data-entities';
+import { Money, Asset } from '@waves/data-entities';
 
 const asset = new Asset({
    ticker: 'TN',
@@ -60,7 +60,7 @@ For change network byte use @turtlenetwork/signature-generator config:
 ```typescript
 import { config } from '@turtlenetwork/signature-generator';
 
-config.set('networkByte', 'T'.charCodeAt(0))
+config.set('networkByte', 'l'.charCodeAt(0))
 ```
 
 *If you use seed phrase to create SeedAdapter note that the minimum length of a phrase is 15 characters. See the documentation @turtlenetwork/signature-generator for more details*

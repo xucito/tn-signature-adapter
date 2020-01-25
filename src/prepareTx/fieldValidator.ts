@@ -1,4 +1,4 @@
-import { libs } from '@waves/waves-transactions';
+import { libs } from '@turtlenetwork/waves-transactions';
 import { Money } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
 

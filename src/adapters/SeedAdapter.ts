@@ -1,6 +1,7 @@
+import { seedUtils, libs } from '@turtlenetwork/waves-transactions';
+
 import { Adapter, IUser, ISeedUser } from './Adapter';
 import { AdapterType } from '../config';
-import { seedUtils, libs } from '@waves/waves-transactions';
 import { SIGN_TYPE } from '../prepareTx';
 
 const Seed = seedUtils.Seed;

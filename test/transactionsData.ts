@@ -1,7 +1,7 @@
 import { SIGN_TYPE } from '../src/prepareTx';
 import { Money } from '@waves/data-entities';
 import { BtcAsset, TORCorp, INSTANTCOIN, WavesAsset, Aracoin, WETH, Voyage, TBTC } from './assets';
-import { libs } from '@waves/waves-transactions';
+import { libs } from '@turtlenetwork/waves-transactions';
 import { BigNumber } from '@waves/bignumber';
 
 const { base58Decode } = libs.crypto;
@@ -317,7 +317,6 @@ export const txs = {
     },
     [SIGN_TYPE.SCRIPT_INVOCATION]: {
         1: {
-            network: 'T',
             name: 'script invocation',
             data: {
                 'senderPublicKey': 'FkuT6Kxb5UG4pABfhq8y8f2XndyURrPQtq4rASDbMiSK',

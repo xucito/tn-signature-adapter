@@ -1,8 +1,9 @@
 import { Seed, utils } from '@turtlenetwork/signature-generator';
-import { Asset, BigNumber, Money } from '@turtlenetwork/data-entities';
+import { Asset, Money } from '@waves/data-entities';
 import { SeedAdapter, SIGN_TYPE } from '../src/index';
 import './WavesKeeperAdapter';
 import './validators';
+import BigNumber from '@waves/bignumber';
 
 
 const testSeed = 'some test seed words without money on mainnet';
@@ -45,7 +46,8 @@ describe('Create data and signature check', () => {
                 call: {
                     function: 'trololo',
                     args: [ { value: 123, type: 'string' } ]
-                }
+                },
+                dApp: ""
             };
     
             const signable = adapter.makeSignable({

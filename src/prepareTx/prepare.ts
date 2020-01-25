@@ -1,6 +1,6 @@
 import { Money, AssetPair, OrderPrice } from '@waves/data-entities';
 import { BigNumber } from '@waves/bignumber';
-import { libs } from '@waves/waves-transactions';
+import { libs } from '@turtlenetwork/waves-transactions';
 import { VALIDATORS } from './fieldValidator';
 
 export const WAVES_ID = 'TN';
