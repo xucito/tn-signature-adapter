@@ -13,7 +13,7 @@ export abstract class Adapter {
     protected constructor(networkCode?: string | number) {
         networkCode = typeof networkCode === 'string' ? networkCode.charCodeAt(0) : networkCode;
         this.type = (this as any).constructor.type;
-        this._code = networkCode || Adapter._code || ('W').charCodeAt(0);
+        this._code = networkCode || Adapter._code || ('L').charCodeAt(0);
     }
 
     public makeSignable(forSign: TSignData): Signable {
