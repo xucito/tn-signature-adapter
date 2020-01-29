@@ -24,7 +24,6 @@
     "browserify": "node_modules/.bin/browserify dist/index.js -s turtlenetworkSignatureAdapter -u @waves/waves-crypto -u @waves/bignumber -u @turtlenetwork/waves-transactions -u @waves/data-entities -u @waves/marshall -u @turtlenetwork/ledger -o dist/signature-adapter.js",
     "build": "npm run compile && npm run browserify && npm run uglify",
     "uglify": "node_modules/.bin/uglifyjs dist/signature-adapter.js -o dist/signature-adapter.min.js",
-    "postpublish": "git push origin HEAD",
     "postversion": "npm publish",
     "prepare": "npm run build"
   },
