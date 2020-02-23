@@ -2,7 +2,7 @@
 ///<reference path="../ramda-usage.d.ts"/>
 
 
-import { BigNumber } from '@waves/bignumber';
+import { BigNumber } from '@turtlenetwork/bignumber';
 import path = require('ramda/src/path');
 import {
     IExchangeTransactionOrder,

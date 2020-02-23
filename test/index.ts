@@ -1,9 +1,9 @@
 import { Seed, utils } from '@turtlenetwork/signature-generator';
-import { Asset, Money } from '@waves/data-entities';
+import { Asset, Money } from '@turtlenetwork/data-entities';
 import { SeedAdapter, SIGN_TYPE } from '../src/index';
 import './WavesKeeperAdapter';
 import './validators';
-import BigNumber from '@waves/bignumber';
+import BigNumber from '@turtlenetwork/bignumber';
 
 
 const testSeed = 'some test seed words without money on mainnet';

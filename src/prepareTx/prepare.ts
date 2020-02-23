@@ -1,5 +1,5 @@
-import { Money, AssetPair, OrderPrice } from '@waves/data-entities';
-import { BigNumber } from '@waves/bignumber';
+import { Money, AssetPair, OrderPrice } from '@turtlenetwork/data-entities';
+import { BigNumber } from '@turtlenetwork/bignumber';
 import { libs } from '@turtlenetwork/waves-transactions';
 import { VALIDATORS } from './fieldValidator';
 

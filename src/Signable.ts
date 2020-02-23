@@ -13,7 +13,7 @@ import { ERRORS } from './constants';
 import { SignError } from './SignError';
 import { libs } from '@turtlenetwork/waves-transactions';
 import { convert } from '@waves/money-like-to-node';
-import { BigNumber } from '@waves/bignumber';
+import { BigNumber } from '@turtlenetwork/bignumber';
 import { TRANSACTION_TYPE_NUMBER } from './prepareTx';
 
 const { base58Encode, blake2b, verifySignature } = libs.crypto;

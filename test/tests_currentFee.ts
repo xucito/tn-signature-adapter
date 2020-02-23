@@ -1,5 +1,5 @@
-import { Asset, Money } from '@waves/data-entities';
-import { BigNumber } from '@waves/bignumber';
+import { Asset, Money } from '@turtlenetwork/data-entities';
+import { BigNumber } from '@turtlenetwork/bignumber';
 import { seedUtils } from '@turtlenetwork/waves-transactions';
 import { Signable, currentCreateOrderFactory, SeedAdapter, TSignData, SIGN_TYPE } from '../src';
 import { IExchangeTransactionOrder } from '@waves/ts-types';

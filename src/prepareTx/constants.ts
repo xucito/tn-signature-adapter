@@ -4,7 +4,7 @@ import * as wavesTransactions from '@turtlenetwork/waves-transactions';
 import { toNode as mlToNode } from '@waves/money-like-to-node';
 import { prepare } from './prepare';
 import processors = prepare.processors;
-import { Money } from '@waves/data-entities';
+import { Money } from '@turtlenetwork/data-entities';
 
 const { LEN, SHORT, STRING, LONG, BASE58_STRING } = libs.marshall.serializePrimitives;
 const { binary } = libs.marshall;

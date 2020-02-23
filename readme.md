@@ -9,7 +9,7 @@ $ npm install --save @turtlenetwork/signature-adapter
 ## Usage
 ```typescript
 import { SeedAdapter, SIGN_TYPE } from '@turtlenetwork/signature-adapter';
-import { Money, Asset } from '@waves/data-entities';
+import { Money, Asset } from '@turtlenetwork/data-entities';
 
 const asset = new Asset({
    ticker: 'TN',

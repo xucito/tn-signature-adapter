@@ -1,8 +1,8 @@
 import { SeedAdapter } from '../src/adapters';
-import { Asset, Money } from '@waves/data-entities';
+import { Asset, Money } from '@turtlenetwork/data-entities';
 import { SIGN_TYPE } from '../src/prepareTx';
 import { ERROR_MSG } from '../src/prepareTx/fieldValidator';
-import { BigNumber } from '@waves/bignumber';
+import { BigNumber } from '@turtlenetwork/bignumber';
 import { seedUtils } from '@turtlenetwork/waves-transactions';
 
 const Seed = seedUtils.Seed;

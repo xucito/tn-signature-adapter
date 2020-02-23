@@ -1,8 +1,8 @@
 import { SIGN_TYPE } from '../src/prepareTx';
-import { Money } from '@waves/data-entities';
-import { BtcAsset, TORCorp, INSTANTCOIN, WavesAsset, Aracoin, WETH, Voyage, TBTC } from './assets';
+import { Money } from '@turtlenetwork/data-entities';
+import { BtcAsset, TORCorp, INSTANTCOIN, WavesAsset, Aracoin, WETH, Voyage, TBTC, TnAsset } from './assets';
 import { libs } from '@turtlenetwork/waves-transactions';
-import { BigNumber } from '@waves/bignumber';
+import { BigNumber } from '@turtlenetwork/bignumber';
 
 const { base58Decode } = libs.crypto;
 
@@ -442,7 +442,7 @@ export const txs = {
                 'senderPublicKey': 'Cb92PCaMeimQmmK1dSaoUro3j8YhskKhH89JWdmsCkQX',
                 'matcherPublicKey': 'E3UwaHCQCySghK3zwNB8EDHoc3b8uhzGPFz3gHmWon4W',
                 'orderType': 'buy',
-                'amount': Money.fromCoins(71841490, WavesAsset),
+                'amount': Money.fromCoins(71841490, TnAsset),
                 'price': Money.fromCoins(30800, TBTC),
                 'timestamp': 1559291009514,
                 'expiration': 1561796609514,

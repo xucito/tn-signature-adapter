@@ -1,6 +1,6 @@
 import { libs } from '@turtlenetwork/waves-transactions';
-import { Money } from '@waves/data-entities';
-import { BigNumber } from '@waves/bignumber';
+import { Money } from '@turtlenetwork/data-entities';
+import { BigNumber } from '@turtlenetwork/bignumber';
 
 const { stringToBytes, base58Decode, keccak, blake2b } = libs.crypto;
 

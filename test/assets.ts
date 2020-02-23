@@ -1,10 +1,24 @@
-import { Asset } from '@waves/data-entities';
+import { Asset } from '@turtlenetwork/data-entities';
 
 
 export const WavesAsset = new Asset({
     ticker: 'WAVES',
     id: 'WAVES',
     name: 'Waves',
+    precision: 8,
+    description: '',
+    height: 0,
+    timestamp: new Date('2016-04-11T21:00:00.000Z'),
+    sender: '',
+    quantity: 10000000000000000,
+    reissuable: false
+});
+
+
+export const TnAsset = new Asset({
+    ticker: 'TN',
+    id: 'TN',
+    name: 'Turtle Network',
     precision: 8,
     description: '',
     height: 0,
